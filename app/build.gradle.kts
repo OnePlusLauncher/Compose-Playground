@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Dependencies.AndroidSdk.compiledVersion)
+    compileSdk = Dependencies.AndroidSdk.compiledVersion
 
     defaultConfig {
         applicationId = "com.example.composeplayground"
-        minSdkVersion(Dependencies.AndroidSdk.minSdk)
-        targetSdkVersion(Dependencies.AndroidSdk.targetSdk)
+        minSdk = Dependencies.AndroidSdk.minSdk
+        targetSdk = Dependencies.AndroidSdk.targetSdk
         versionCode = Dependencies.Application.versionCode
         versionName = Dependencies.Application.versionName
 
@@ -27,13 +27,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        jvmTarget = "11"
-        useIR = true
+        jvmTarget = "1.8"
     }
 
     buildFeatures {
@@ -41,26 +40,27 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Dependencies.Libraries.composeVersion
-        kotlinCompilerVersion = Dependencies.GradlePlugins.kotlinVersion
+        kotlinCompilerExtensionVersion = Dependencies.Libraries.Compose.compose
     }
 }
 
 dependencies {
-    // Core
-    implementation("androidx.core:core-ktx:1.5.0")
-    implementation("androidx.appcompat:appcompat:1.3.0")
-    implementation("com.google.android.material:material:1.3.0")
+    // ktx
+    implementation("androidx.core:core-ktx:${Dependencies.Libraries.Ktx.core}")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Dependencies.Libraries.Ktx.lifecycleRuntime}")
+
+    // UI
+    implementation("androidx.appcompat:appcompat:${Dependencies.Libraries.appcompat}")
+    implementation("com.google.android.material:material:${Dependencies.Libraries.material}")
 
     // Compose
-    implementation("androidx.compose.ui:ui:${Dependencies.Libraries.composeVersion}")
-    implementation("androidx.compose.material:material:${Dependencies.Libraries.composeVersion}")
-    implementation("androidx.compose.ui:ui-tooling:${Dependencies.Libraries.composeVersion}")
-    implementation("androidx.activity:activity-compose:1.3.0-alpha08")
+    implementation("androidx.compose.ui:ui:${Dependencies.Libraries.Compose.compose}")
+    implementation("androidx.compose.material:material:${Dependencies.Libraries.Compose.compose}")
+    implementation("androidx.compose.ui:ui-tooling:${Dependencies.Libraries.Compose.compose}")
+    implementation("androidx.activity:activity-compose:${Dependencies.Libraries.Compose.activityCompose}")
 
     // Tests
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+    testImplementation("junit:junit:${Dependencies.Test.junit}")
+    androidTestImplementation("androidx.test.ext:junit:${Dependencies.AndroidTest.junit}")
+    androidTestImplementation("androidx.test.espresso:espresso-core:${Dependencies.AndroidTest.espresso}")
 }
