@@ -3,16 +3,13 @@ package com.example.composeplayground
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -26,10 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
             ComposePlaygroundTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                }
+                Greeting("Android")
             }
         }
     }
@@ -37,22 +31,37 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun Greeting(name: String) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight()
-    ) {
-        Text(
-            text = "Hello $name!",
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(16.dp)
-        )
+    Surface(color = MaterialTheme.colors.background) {
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .background(MaterialTheme.colors.background)
+                .fillMaxWidth()
+                .fillMaxHeight()
+        ) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "Hello $name!",
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(16.dp)
+                )
+
+                Button(
+                    onClick = {
+
+                    },
+                ) {
+                    Text("Click me!")
+                }
+            }
+        }
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
 fun DefaultPreview() {
     ComposePlaygroundTheme {
@@ -60,7 +69,7 @@ fun DefaultPreview() {
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
 fun DefaultPreviewDark() {
     ComposePlaygroundTheme(true) {
