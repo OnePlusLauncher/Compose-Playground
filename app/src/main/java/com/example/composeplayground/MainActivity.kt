@@ -1,5 +1,6 @@
 package com.example.composeplayground
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import com.example.composeplayground.extensions.dataStore
+import com.example.composeplayground.extensions.systemDarkTheme
 import com.example.composeplayground.extensions.then
 import com.example.composeplayground.screens.main.MainScreen
 import com.example.composeplayground.ui.theme.PortfolioTheme
@@ -24,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         runBlocking {
             val darkTheme = dataStore.data.first()[booleanPreferencesKey("darkTheme")]
-                ?: false
+                ?: systemDarkTheme
             AppCompatDelegate.setDefaultNightMode(darkTheme then MODE_NIGHT_YES ?: MODE_NIGHT_NO)
         }
         super.onCreate(savedInstanceState)
@@ -39,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             .drop(1)
             .map {
                 it[booleanPreferencesKey("darkTheme")] then MODE_NIGHT_YES
-                    ?: MODE_NIGHT_NO
+                    ?: systemDarkTheme then MODE_NIGHT_YES ?: MODE_NIGHT_NO
             }
             .distinctUntilChanged()
             .onEach(AppCompatDelegate::setDefaultNightMode)

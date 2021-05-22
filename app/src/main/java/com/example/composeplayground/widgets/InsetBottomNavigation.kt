@@ -71,7 +71,10 @@ private val previewRowScope: @Composable RowScope.() -> Unit = {
 @Composable
 private fun PreviewLight() {
     PortfolioTheme(false) {
-        InsetBottomNavigation(content = previewRowScope)
+        InsetBottomNavigation(
+            backgroundColor = MaterialTheme.colors.background,
+            content = previewRowScope
+        )
     }
 }
 
@@ -79,6 +82,9 @@ private fun PreviewLight() {
 @Composable
 private fun PreviewDark() {
     PortfolioTheme(true) {
-        InsetBottomNavigation(content = previewRowScope)
+        InsetBottomNavigation(
+            backgroundColor = MaterialTheme.colors.background,
+            content = previewRowScope
+        )
     }
 }

@@ -6,6 +6,10 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Call
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Share
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -49,7 +53,12 @@ fun InsetTopAppBar(
 }
 
 private val previewRowScope: @Composable RowScope.() -> Unit = {
-
+    IconButton(onClick = { }) {
+        Icon(Icons.Outlined.Info, contentDescription = "Call")
+    }
+    IconButton(onClick = { }) {
+        Icon(Icons.Outlined.Share, contentDescription = "Call")
+    }
 }
 
 @Preview
@@ -57,6 +66,7 @@ private val previewRowScope: @Composable RowScope.() -> Unit = {
 private fun PreviewLight() {
     PortfolioTheme(false) {
         InsetTopAppBar(
+            title = { Text("Preview Light") },
             backgroundColor = MaterialTheme.colors.background,
             actions = previewRowScope
         )
@@ -68,7 +78,9 @@ private fun PreviewLight() {
 private fun PreviewDark() {
     PortfolioTheme(true) {
         InsetTopAppBar(
+            title = { Text("Preview Dark") },
             backgroundColor = MaterialTheme.colors.background,
-            actions = previewRowScope)
+            actions = previewRowScope
+        )
     }
 }
