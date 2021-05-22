@@ -45,6 +45,12 @@ android {
 }
 
 dependencies {
+    // Kotlin
+    implementation(kotlin("reflect"))
+
+    // Data Store
+    implementation("androidx.datastore:datastore-preferences:${Dependencies.Libraries.dataStore}")
+
     // ktx
     implementation("androidx.core:core-ktx:${Dependencies.Libraries.Ktx.core}")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Dependencies.Libraries.Ktx.lifecycleRuntime}")
@@ -58,7 +64,8 @@ dependencies {
     implementation("androidx.compose.material:material:${Dependencies.Libraries.Compose.compose}")
     implementation("androidx.compose.ui:ui-tooling:${Dependencies.Libraries.Compose.compose}")
     implementation("androidx.activity:activity-compose:${Dependencies.Libraries.Compose.activityCompose}")
-
+    implementation( "androidx.navigation:navigation-compose:${Dependencies.Libraries.Compose.navigation}")
+    implementation("com.google.accompanist:accompanist-insets:${Dependencies.Libraries.Compose.insets}")
     // Tests
     testImplementation("junit:junit:${Dependencies.Test.junit}")
     androidTestImplementation("androidx.test.ext:junit:${Dependencies.AndroidTest.junit}")

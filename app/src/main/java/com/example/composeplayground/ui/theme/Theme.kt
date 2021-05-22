@@ -8,20 +8,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColors(
-    primary = Purple200,
-    primaryVariant = Purple700,
-    secondary = Teal200,
-    onPrimary = Color.White
+    primary = PrimaryColor,
+    primaryVariant = PrimaryColorVariant,
+    secondary = PrimaryColorVariant,
+    onPrimary = Color.White,
+    onSecondary = Color.White
 )
 
 private val LightColorPalette = lightColors(
-    primary = Purple500,
-    primaryVariant = Purple700,
-    secondary = Teal200
+    primary = PrimaryColor,
+    primaryVariant = PrimaryColorVariant,
+    secondary = PrimaryColor
 )
 
 @Composable
-fun ComposePlaygroundTheme(
+fun PortfolioTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable() () -> Unit
 ) {

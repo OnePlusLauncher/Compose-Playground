@@ -3,12 +3,13 @@ object Dependencies {
     object GradlePlugins {
         // TODO: Upgrade to 1.5.0 when Compose supports it
         const val kotlinVersion = "1.4.32"
-        const val gradleVersion = "7.0.0-beta01"
+        const val gradleVersion = "7.1.0-alpha01"
     }
 
     object Libraries {
         const val material = "1.3.0"
         const val appcompat = "1.3.0"
+        const val dataStore = "1.0.0-beta01"
 
         object Ktx {
             const val core = "1.5.0"
@@ -18,6 +19,8 @@ object Dependencies {
         object Compose {
             const val compose = "1.0.0-beta07"
             const val activityCompose = "1.3.0-alpha08"
+            const val navigation= "2.4.0-alpha01"
+            const val insets = "0.10.0"
         }
     }
 

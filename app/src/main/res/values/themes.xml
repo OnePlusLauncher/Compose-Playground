@@ -3,8 +3,12 @@
     <style name="Theme.ComposePlayground" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Status/Nav bars -->
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+
+        <!-- Opt out of the system automatically recolouring status and navigation bar icons. -->
+        <item name="android:enforceStatusBarContrast" tools:ignore="NewApi">false</item>
+        <item name="android:enforceNavigationBarContrast" tools:ignore="NewApi">false</item>
     </style>
 </resources>
