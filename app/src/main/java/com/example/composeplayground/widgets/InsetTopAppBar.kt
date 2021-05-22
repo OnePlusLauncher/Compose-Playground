@@ -1,5 +1,6 @@
 package com.example.composeplayground.widgets
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
@@ -8,9 +9,11 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.composeplayground.extensions.then
+import com.example.composeplayground.ui.theme.PortfolioTheme
 import com.google.accompanist.insets.statusBarsHeight
 
 private val TopAppBarHeight = 56.dp
@@ -22,9 +25,9 @@ fun InsetTopAppBar(
     applyWindowInsets: Boolean = true,
     title: @Composable () -> Unit = {},
     navigationIcon: @Composable (() -> Unit)? = null,
-    actions: @Composable RowScope.() -> Unit,
     backgroundColor: Color = MaterialTheme.colors.primarySurface,
     contentColor: Color = contentColorFor(backgroundColor),
+    actions: @Composable RowScope.() -> Unit,
 ) {
     Surface(
         modifier = applyWindowInsets then modifier.statusBarsHeight(TopAppBarHeight)
@@ -42,5 +45,30 @@ fun InsetTopAppBar(
                 actions = actions
             )
         }
+    }
+}
+
+private val previewRowScope: @Composable RowScope.() -> Unit = {
+
+}
+
+@Preview
+@Composable
+private fun PreviewLight() {
+    PortfolioTheme(false) {
+        InsetTopAppBar(
+            backgroundColor = MaterialTheme.colors.background,
+            actions = previewRowScope
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun PreviewDark() {
+    PortfolioTheme(true) {
+        InsetTopAppBar(
+            backgroundColor = MaterialTheme.colors.background,
+            actions = previewRowScope)
     }
 }

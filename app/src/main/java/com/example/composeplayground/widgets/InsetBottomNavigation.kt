@@ -69,7 +69,7 @@ private val previewRowScope: @Composable RowScope.() -> Unit = {
 
 @Preview
 @Composable
-fun PreviewLight() {
+private fun PreviewLight() {
     PortfolioTheme(false) {
         InsetBottomNavigation(content = previewRowScope)
     }
@@ -77,7 +77,7 @@ fun PreviewLight() {
 
 @Preview
 @Composable
-fun PreviewDark() {
+private fun PreviewDark() {
     PortfolioTheme(true) {
         InsetBottomNavigation(content = previewRowScope)
     }
