@@ -18,17 +18,19 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 
 private val DarkColorPalette = darkColors(
-    primary = PrimaryColor,
+    primary = PrimaryColorDark,
     primaryVariant = PrimaryColorVariant,
     secondary = PrimaryColorVariant,
     onPrimary = Color.White,
-    onSecondary = Color.White
+    onSecondary = Color.White,
+    error = ErrorColor
 )
 
 private val LightColorPalette = lightColors(
     primary = PrimaryColor,
     primaryVariant = PrimaryColorVariant,
-    secondary = PrimaryColor
+    secondary = PrimaryColor,
+    error = ErrorColor
 )
 
 @Composable

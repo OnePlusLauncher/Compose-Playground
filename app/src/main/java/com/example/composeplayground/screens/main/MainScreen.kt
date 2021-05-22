@@ -22,11 +22,7 @@ fun MainScreen() {
     Scaffold(
         bottomBar = { BottomBar(navController) }
     ) {
-        NavHost(navController = navController, startDestination = BottomNavDestination.Home.route) {
-            composable(BottomNavDestination.Home.route) { HomeScreen(navController) }
-            composable(BottomNavDestination.About.route) { AboutScreen() }
-            composable("detail") { DetailScreen(navController) }
-        }
+        AppNavigation(navController)
     }
 }
 
@@ -49,8 +45,9 @@ private fun BottomBar(navController: NavController) {
                 onClick = {
                     navController.navigate(it.route) {
                         popUpTo(navController.graph.startDestinationRoute!!) {
-
+                            saveState = true
                         }
+                        restoreState = true
                         launchSingleTop = true
                     }
                     selectedTab.value = it.route
