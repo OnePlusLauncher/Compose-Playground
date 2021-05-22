@@ -1,7 +1,9 @@
 package com.example.composeplayground.widgets
 
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
@@ -18,8 +20,6 @@ import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.statusBarsHeight
 import com.google.accompanist.insets.toPaddingValues
 
-private val TopAppBarHeight = 56.dp
-
 @Composable
 fun InsetTopAppBar(
     modifier: Modifier = Modifier,
@@ -31,12 +31,7 @@ fun InsetTopAppBar(
     contentColor: Color = contentColorFor(backgroundColor),
     actions: @Composable RowScope.() -> Unit = {},
 ) {
-    Surface(
-        modifier = applyWindowInsets then modifier
-            .statusBarsHeight(TopAppBarHeight)
-            ?: modifier.height(TopAppBarHeight),
-        elevation = elevation
-    ) {
+    Surface(elevation = elevation, modifier = modifier) {
         Column(
             modifier = applyWindowInsets then Modifier.padding(
                 LocalWindowInsets.current.systemBars.toPaddingValues(

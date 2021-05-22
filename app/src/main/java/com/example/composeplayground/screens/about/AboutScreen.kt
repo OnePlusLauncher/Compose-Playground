@@ -1,6 +1,5 @@
 package com.example.composeplayground.screens.about
 
-import android.util.Log
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -13,12 +12,17 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.example.composeplayground.extensions.dataStore
+import com.example.composeplayground.extensions.horizontalInsets
 import com.example.composeplayground.extensions.then
 import com.example.composeplayground.ui.theme.AppTheme
 import com.example.composeplayground.widgets.InsetTopAppBar
 import com.google.accompanist.insets.statusBarsHeight
 import compose.icons.EvaIcons
+import compose.icons.evaicons.Fill
 import compose.icons.evaicons.Outline
+import compose.icons.evaicons.fill.Moon
+import compose.icons.evaicons.fill.Settings
+import compose.icons.evaicons.fill.Sun
 import compose.icons.evaicons.outline.Moon
 import compose.icons.evaicons.outline.Settings
 import compose.icons.evaicons.outline.Sun
@@ -26,58 +30,55 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun AboutScreen() {
-    val context = LocalContext.current
-    val selectedTheme = AppTheme.themeChanges(context.dataStore).value
-
     Scaffold(
         topBar = { AboutTopBar() }
     ) {
-        LazyColumn {
-            item { ToggleThemeItem(selectedTheme) }
+        LazyColumn(Modifier.horizontalInsets()) {
+            item { ToggleThemeItem() }
         }
     }
 }
 
 @Composable
-private fun ToggleThemeItem(selectedTheme: AppTheme) {
+private fun ToggleThemeItem() {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.padding(16.dp)
     ) {
-
-        Log.d("Main", "$selectedTheme")
-
         Text("Select Theme", Modifier.weight(1f))
+
         ThemeIcon(
             EvaIcons.Outline.Sun,
+            EvaIcons.Fill.Sun,
             "Light",
-            AppTheme.LIGHT,
-            selectedTheme == AppTheme.LIGHT
+            AppTheme.LIGHT
         )
         ThemeIcon(
             EvaIcons.Outline.Moon,
+            EvaIcons.Fill.Moon,
             "Dark",
-            AppTheme.DARK,
-            selectedTheme == AppTheme.DARK
+            AppTheme.DARK
         )
         ThemeIcon(
             EvaIcons.Outline.Settings,
+            EvaIcons.Fill.Settings,
             "Auto",
-            AppTheme.SYSTEM,
-            selectedTheme == AppTheme.SYSTEM
+            AppTheme.SYSTEM
         )
     }
 }
 
 @Composable
 private fun ThemeIcon(
-    imageVector: ImageVector,
+    icon: ImageVector,
+    selectedIcon: ImageVector,
     contentDescription: String,
-    appTheme: AppTheme,
-    isSelected: Boolean
+    appTheme: AppTheme
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
+    val selectedTheme = AppTheme.themeChanges(context.dataStore).value
+    val isSelected = selectedTheme == appTheme
 
     IconButton(onClick = {
         scope.launch {
@@ -85,7 +86,7 @@ private fun ThemeIcon(
         }
     }) {
         Icon(
-            imageVector,
+            isSelected then selectedIcon ?: icon,
             contentDescription,
             tint = isSelected then MaterialTheme.colors.primary
                 ?: LocalContentColor.current.copy(

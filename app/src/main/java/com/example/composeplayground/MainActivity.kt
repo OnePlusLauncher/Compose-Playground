@@ -2,18 +2,16 @@ package com.example.composeplayground
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.isSystemInDarkTheme
 import com.example.composeplayground.extensions.dataStore
 import com.example.composeplayground.screens.main.MainScreen
-import com.example.composeplayground.ui.theme.PlaygroundTheme
 import com.example.composeplayground.ui.theme.AppTheme
+import com.example.composeplayground.ui.theme.PlaygroundTheme
 import com.example.composeplayground.ui.theme.isDarkTheme
 import com.google.accompanist.insets.ProvideWindowInsets
-import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
 

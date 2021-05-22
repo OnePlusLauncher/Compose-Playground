@@ -12,8 +12,9 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 
 private val DarkColorPalette = darkColors(
@@ -60,7 +61,7 @@ enum class AppTheme {
 
         private fun default() = SYSTEM
 
-        fun currentTheme(dataStore: DataStore<Preferences>): AppTheme = runBlocking {
+        private fun currentTheme(dataStore: DataStore<Preferences>) = runBlocking {
             val savedTheme = dataStore.data.first()[stringPreferencesKey(themePreferenceKey)]
             withValue(savedTheme)
         }
@@ -76,7 +77,7 @@ enum class AppTheme {
             .map { it[stringPreferencesKey(themePreferenceKey)] }
             .map(::withValue)
             .distinctUntilChanged()
-            .collectAsState(initial = currentTheme(dataStore), context = Dispatchers.Default)
+            .collectAsState(initial = currentTheme(dataStore), context = Dispatchers.Main)
     }
 }
 

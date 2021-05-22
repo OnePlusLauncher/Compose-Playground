@@ -1,7 +1,8 @@
 package com.example.composeplayground.widgets
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Home
@@ -13,11 +14,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.composeplayground.extensions.then
 import com.example.composeplayground.ui.theme.PlaygroundTheme
 import com.google.accompanist.insets.navigationBarsHeight
-
-private val BottomNavigationBarHeight = 56.dp
 
 @Composable
 fun InsetBottomNavigation(
@@ -28,21 +26,18 @@ fun InsetBottomNavigation(
     contentColor: Color = contentColorFor(backgroundColor),
     content: @Composable RowScope.() -> Unit
 ) {
-    Surface(
-        elevation = elevation,
-        modifier = applyWindowInsets then modifier.navigationBarsHeight(BottomNavigationBarHeight)
-            ?: modifier.height(BottomNavigationBarHeight),
-    ) {
-        BottomNavigation(
-            elevation = 0.dp,
-            backgroundColor = backgroundColor,
-            contentColor = contentColor,
-            content = content
-        )
+    Surface(elevation = elevation) {
+        Column {
+            BottomNavigation(
+                elevation = 0.dp,
+                backgroundColor = backgroundColor,
+                contentColor = contentColor,
+                content = content
+            )
+            if (applyWindowInsets) Spacer(modifier = modifier.navigationBarsHeight())
+        }
     }
 }
-
-fun Modifier.bottomNavigationHeight() = height(BottomNavigationBarHeight)
 
 private val previewRowScope: @Composable RowScope.() -> Unit = {
     BottomNavigationItem(
