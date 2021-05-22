@@ -19,8 +19,9 @@ object Dependencies {
         object Compose {
             const val compose = "1.0.0-beta07"
             const val activityCompose = "1.3.0-alpha08"
-            const val navigation= "2.4.0-alpha01"
+            const val navigation = "2.4.0-alpha01"
             const val insets = "0.10.0"
+            const val icons = "0.2.0"
         }
     }
 

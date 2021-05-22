@@ -10,4 +10,7 @@ fun DetailScreen(navController: NavController) {
     Button(onClick = { navController.popBackStack() }) {
         Text(text = "Go Back")
     }
+    Button(onClick = { navController.navigate("detail") }) {
+        Text(text = "Go Next")
+    }
 }

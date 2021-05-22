@@ -66,6 +66,8 @@ dependencies {
     implementation("androidx.activity:activity-compose:${Dependencies.Libraries.Compose.activityCompose}")
     implementation( "androidx.navigation:navigation-compose:${Dependencies.Libraries.Compose.navigation}")
     implementation("com.google.accompanist:accompanist-insets:${Dependencies.Libraries.Compose.insets}")
+    implementation("br.com.devsrsouza.compose.icons.android:eva-icons:${Dependencies.Libraries.Compose.icons}")
+
     // Tests
     testImplementation("junit:junit:${Dependencies.Test.junit}")
     androidTestImplementation("androidx.test.ext:junit:${Dependencies.AndroidTest.junit}")

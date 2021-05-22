@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.composeplayground.extensions.then
-import com.example.composeplayground.ui.theme.PortfolioTheme
+import com.example.composeplayground.ui.theme.PlaygroundTheme
 import com.google.accompanist.insets.navigationBarsHeight
 
 private val BottomNavigationBarHeight = 56.dp
@@ -70,7 +70,7 @@ private val previewRowScope: @Composable RowScope.() -> Unit = {
 @Preview
 @Composable
 private fun PreviewLight() {
-    PortfolioTheme(false) {
+    PlaygroundTheme(false) {
         InsetBottomNavigation(
             backgroundColor = MaterialTheme.colors.background,
             content = previewRowScope
@@ -81,7 +81,7 @@ private fun PreviewLight() {
 @Preview
 @Composable
 private fun PreviewDark() {
-    PortfolioTheme(true) {
+    PlaygroundTheme(true) {
         InsetBottomNavigation(
             backgroundColor = MaterialTheme.colors.background,
             content = previewRowScope

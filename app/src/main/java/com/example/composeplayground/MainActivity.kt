@@ -1,34 +1,23 @@
 package com.example.composeplayground
 
-import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
-import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
-import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.compose.foundation.isSystemInDarkTheme
 import com.example.composeplayground.extensions.dataStore
-import com.example.composeplayground.extensions.systemDarkTheme
-import com.example.composeplayground.extensions.then
 import com.example.composeplayground.screens.main.MainScreen
-import com.example.composeplayground.ui.theme.PortfolioTheme
+import com.example.composeplayground.ui.theme.PlaygroundTheme
+import com.example.composeplayground.ui.theme.AppTheme
+import com.example.composeplayground.ui.theme.isDarkTheme
 import com.google.accompanist.insets.ProvideWindowInsets
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        runBlocking {
-            val darkTheme = dataStore.data.first()[booleanPreferencesKey("darkTheme")]
-                ?: systemDarkTheme
-            AppCompatDelegate.setDefaultNightMode(darkTheme then MODE_NIGHT_YES ?: MODE_NIGHT_NO)
-        }
         super.onCreate(savedInstanceState)
 
         @Suppress("DEPRECATION")
@@ -37,22 +26,43 @@ class MainActivity : AppCompatActivity() {
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
 
-        dataStore.data
-            .drop(1)
-            .map {
-                it[booleanPreferencesKey("darkTheme")] then MODE_NIGHT_YES
-                    ?: systemDarkTheme then MODE_NIGHT_YES ?: MODE_NIGHT_NO
-            }
-            .distinctUntilChanged()
-            .onEach(AppCompatDelegate::setDefaultNightMode)
-            .launchIn(CoroutineScope(Dispatchers.Main.immediate))
-
         setContent {
-            PortfolioTheme(darkTheme = AppCompatDelegate.getDefaultNightMode() == MODE_NIGHT_YES) {
+            val appTheme = AppTheme.themeChanges(dataStore)
+            val darkTheme = appTheme.value.isDarkTheme(isSystemInDarkTheme())
+
+            toggleSystemBars(darkTheme)
+
+            PlaygroundTheme(darkTheme = darkTheme) {
                 ProvideWindowInsets {
                     MainScreen()
                 }
             }
         }
+    }
+
+    @Suppress("DEPRECATION")
+    private fun toggleSystemBars(darkTheme: Boolean) {
+        var flags = window.decorView.systemUiVisibility
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!darkTheme) {
+                if (flags and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR == 0) {
+                    flags = flags or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                }
+            } else {
+                if (flags and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR != 0) {
+                    flags = flags and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
+                }
+            }
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            flags = if (darkTheme) {
+                flags and View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR.inv()
+            } else {
+                flags or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+            }
+        }
+        window.decorView.systemUiVisibility = flags
     }
 }

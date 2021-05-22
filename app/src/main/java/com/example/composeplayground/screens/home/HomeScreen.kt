@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.composeplayground.ui.theme.PortfolioTheme
+import com.example.composeplayground.ui.theme.PlaygroundTheme
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -19,7 +19,7 @@ fun HomeScreen(navController: NavController) {
 @Preview
 @Composable
 fun DefaultPreview() {
-    PortfolioTheme {
+    PlaygroundTheme {
         HomeScreen(rememberNavController())
     }
 }
@@ -27,7 +27,7 @@ fun DefaultPreview() {
 @Preview
 @Composable
 fun DefaultPreviewDark() {
-    PortfolioTheme(true) {
+    PlaygroundTheme(true) {
         HomeScreen(rememberNavController())
     }
 }
