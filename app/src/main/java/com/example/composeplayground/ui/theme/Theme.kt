@@ -89,4 +89,3 @@ fun AppTheme.isDarkTheme(systemDarkTheme: Boolean) = when (this) {
     AppTheme.DARK -> true
     AppTheme.SYSTEM -> systemDarkTheme
 }
-
