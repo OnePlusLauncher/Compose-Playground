@@ -37,7 +37,7 @@ fun RootNavigationScreen(navController: NavController) {
             )
 
             Button(
-                modifier = Modifier.padding(top = 16.dp, bottom = 140.dp),
+                modifier = Modifier.padding(top = 16.dp),
                 onClick = {
                     navController.navigate("nested_navigation/1")
                 }

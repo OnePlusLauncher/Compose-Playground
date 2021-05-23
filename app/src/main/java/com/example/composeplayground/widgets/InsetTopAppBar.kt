@@ -1,5 +1,6 @@
 package com.example.composeplayground.widgets
 
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
@@ -30,8 +31,21 @@ fun InsetTopAppBar(
     backgroundColor: Color = MaterialTheme.colors.primarySurface,
     contentColor: Color = contentColorFor(backgroundColor),
     actions: @Composable RowScope.() -> Unit = {},
+    scrollPosition: Int? = null,
 ) {
-    Surface(elevation = elevation, modifier = modifier) {
+
+    val animatedElevation = animateDpAsState(
+        if (scrollPosition != null) {
+            (scrollPosition > 0) then elevation ?: 0.dp
+        } else {
+            elevation
+        }
+    )
+
+    Surface(
+        elevation = animatedElevation.value,
+        modifier = modifier
+    ) {
         Column(
             modifier = applyWindowInsets then Modifier.padding(
                 LocalWindowInsets.current.systemBars.toPaddingValues(

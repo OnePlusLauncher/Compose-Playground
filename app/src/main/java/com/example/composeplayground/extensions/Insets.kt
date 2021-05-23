@@ -9,3 +9,7 @@ import com.google.accompanist.insets.toPaddingValues
 fun Modifier.horizontalInsets(): Modifier = composed {
     padding(LocalWindowInsets.current.systemBars.toPaddingValues(top = false, bottom = false))
 }
+
+fun Modifier.bottomInsets(): Modifier = composed {
+    padding(LocalWindowInsets.current.statusBars.toPaddingValues(bottom = true))
+}

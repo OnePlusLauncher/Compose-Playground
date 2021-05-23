@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.composeplayground.screens.rickmorty.data.Character
 import com.example.composeplayground.screens.rickmorty.data.RickMortyRepository
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 
 class RickMortyViewModel(
@@ -15,7 +14,6 @@ class RickMortyViewModel(
 
     val state: StateFlow<RickMortyState> = triggerFlow.flatMapConcat {
         flow {
-            delay(2000)
             emit(
                 try {
                     RickMortyState.Success(repository.getCharacters())
