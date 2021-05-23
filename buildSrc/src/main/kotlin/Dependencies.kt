@@ -7,9 +7,12 @@ object Dependencies {
     }
 
     object Libraries {
+        const val retrofit = "2.9.0"
         const val material = "1.3.0"
         const val appcompat = "1.3.0"
         const val dataStore = "1.0.0-beta01"
+        const val lottie = "3.7.1-SNAPSHOT"
+        const val coil = "0.10.0"
 
         object Ktx {
             const val core = "1.5.0"
@@ -22,6 +25,8 @@ object Dependencies {
             const val navigation = "2.4.0-alpha01"
             const val insets = "0.10.0"
             const val icons = "0.2.0"
+            const val lottie = "1.0.0-beta07-1"
+            const val viewModel = "1.0.0-alpha05"
         }
     }
 

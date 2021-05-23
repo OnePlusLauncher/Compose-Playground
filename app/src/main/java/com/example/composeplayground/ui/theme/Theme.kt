@@ -23,6 +23,7 @@ private val DarkColorPalette = darkColors(
     secondary = PrimaryColorVariant,
     onPrimary = Color.White,
     onSecondary = Color.White,
+    onError = Color.White,
     error = ErrorColor
 )
 
@@ -30,7 +31,7 @@ private val LightColorPalette = lightColors(
     primary = PrimaryColor,
     primaryVariant = PrimaryColorVariant,
     secondary = PrimaryColor,
-    error = ErrorColor
+    error = ErrorColor,
 )
 
 @Composable

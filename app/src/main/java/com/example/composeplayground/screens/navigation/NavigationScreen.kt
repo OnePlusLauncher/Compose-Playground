@@ -1,4 +1,4 @@
-package com.example.composeplayground.screens.detail
+package com.example.composeplayground.screens.navigation
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -10,7 +10,7 @@ import androidx.navigation.NavController
 import com.google.accompanist.insets.statusBarsPadding
 
 @Composable
-fun DetailScreen(navController: NavController, count: Int) {
+fun NavigationScreen(navController: NavController, count: Int) {
     Scaffold(modifier = Modifier.statusBarsPadding()) {
         Column(
             verticalArrangement = Arrangement.Center,
@@ -19,7 +19,7 @@ fun DetailScreen(navController: NavController, count: Int) {
         ) {
             Button(
                 onClick = {
-                    navController.navigate("detail/${count + 1}")
+                    navController.navigate("nested_navigation/${count + 1}")
                 }
             ) {
                 Text("Navigate infinitely ($count)")
@@ -29,7 +29,7 @@ fun DetailScreen(navController: NavController, count: Int) {
 
             Button(
                 onClick = {
-                    navController.popBackStack("home", false)
+                    navController.popBackStack("navigation", false)
                 },
                 modifier = Modifier.padding(top = 16.dp),
                 colors = ButtonDefaults.buttonColors(

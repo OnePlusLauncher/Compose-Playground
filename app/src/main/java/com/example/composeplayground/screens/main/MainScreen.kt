@@ -6,13 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.composeplayground.extensions.then
-import com.example.composeplayground.screens.about.AboutScreen
-import com.example.composeplayground.screens.detail.DetailScreen
-import com.example.composeplayground.screens.home.HomeScreen
 import com.example.composeplayground.widgets.InsetBottomNavigation
 
 @Composable
@@ -26,10 +21,9 @@ fun MainScreen() {
     }
 }
 
-
 @Composable
 private fun BottomBar(navController: NavController) {
-    val selectedTab = rememberSaveable { mutableStateOf("home") }
+    val selectedTab = rememberSaveable { mutableStateOf("navigation") }
 
     InsetBottomNavigation(
         backgroundColor = MaterialTheme.colors.background

@@ -6,10 +6,12 @@ import com.example.composeplayground.R
 import compose.icons.EvaIcons
 import compose.icons.evaicons.Fill
 import compose.icons.evaicons.Outline
-import compose.icons.evaicons.fill.Home
+import compose.icons.evaicons.fill.Battery
 import compose.icons.evaicons.fill.Info
-import compose.icons.evaicons.outline.Home
+import compose.icons.evaicons.fill.Navigation
+import compose.icons.evaicons.outline.Battery
 import compose.icons.evaicons.outline.Info
+import compose.icons.evaicons.outline.Navigation
 
 sealed class BottomNavDestination(
     val route: String,
@@ -18,14 +20,21 @@ sealed class BottomNavDestination(
     val selectedIcon: ImageVector
 ) {
     companion object {
-        val destinations = listOf(Home, About)
+        val destinations = listOf(Navigation, RickMorty, About)
     }
 
-    object Home : BottomNavDestination(
-        route = "home",
-        titleResId = R.string.home,
-        icon = EvaIcons.Outline.Home,
-        selectedIcon = EvaIcons.Fill.Home
+    object Navigation : BottomNavDestination(
+        route = "navigation",
+        titleResId = R.string.navigation,
+        icon = EvaIcons.Outline.Navigation,
+        selectedIcon = EvaIcons.Fill.Navigation
+    )
+
+    object RickMorty : BottomNavDestination(
+        route = "rick-morty",
+        titleResId = R.string.rick_morty,
+        icon = EvaIcons.Outline.Battery,
+        selectedIcon = EvaIcons.Fill.Battery
     )
 
     object About : BottomNavDestination(

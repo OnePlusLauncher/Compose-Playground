@@ -64,9 +64,21 @@ dependencies {
     implementation("androidx.compose.material:material:${Dependencies.Libraries.Compose.compose}")
     implementation("androidx.compose.ui:ui-tooling:${Dependencies.Libraries.Compose.compose}")
     implementation("androidx.activity:activity-compose:${Dependencies.Libraries.Compose.activityCompose}")
-    implementation( "androidx.navigation:navigation-compose:${Dependencies.Libraries.Compose.navigation}")
+    implementation("androidx.navigation:navigation-compose:${Dependencies.Libraries.Compose.navigation}")
     implementation("com.google.accompanist:accompanist-insets:${Dependencies.Libraries.Compose.insets}")
     implementation("br.com.devsrsouza.compose.icons.android:eva-icons:${Dependencies.Libraries.Compose.icons}")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:${Dependencies.Libraries.Compose.viewModel}")
+
+    //Lottie
+    implementation("com.airbnb.android:lottie:${Dependencies.Libraries.lottie}")
+    implementation("com.airbnb.android:lottie-compose:${Dependencies.Libraries.Compose.lottie}")
+
+    // Coil
+    implementation("com.google.accompanist:accompanist-coil:${Dependencies.Libraries.coil}")
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:${Dependencies.Libraries.retrofit}")
+    implementation("com.squareup.retrofit2:converter-gson:${Dependencies.Libraries.retrofit}")
 
     // Tests
     testImplementation("junit:junit:${Dependencies.Test.junit}")
