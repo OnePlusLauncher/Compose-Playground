@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
             val appTheme = AppTheme.themeChanges(dataStore)
-            val darkTheme = appTheme.value.isDarkTheme(isSystemInDarkTheme())
+            val darkTheme = appTheme.value.isDarkTheme()
 
             toggleSystemBars(darkTheme)
 

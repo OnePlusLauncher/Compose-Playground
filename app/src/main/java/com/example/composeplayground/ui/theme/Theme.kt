@@ -84,8 +84,9 @@ enum class AppTheme {
     }
 }
 
-fun AppTheme.isDarkTheme(systemDarkTheme: Boolean) = when (this) {
+@Composable
+fun AppTheme.isDarkTheme() = when (this) {
     AppTheme.LIGHT -> false
     AppTheme.DARK -> true
-    AppTheme.SYSTEM -> systemDarkTheme
+    AppTheme.SYSTEM -> isSystemInDarkTheme()
 }
